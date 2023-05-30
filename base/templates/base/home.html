@@ -1,14 +1,45 @@
 {% extends 'main.html' %} {% block content %}
-<div class="px-0 h-100">
-  <div class="bg-white h-100">
-    <div
-      class="bg-gray px-4 py-2 bg-light d-flex justify-content-between">
-      <p class="h5 mb-0 py-1">Chat Rooms</p>
-      <a href="{% url 'create-room' %}">Create Room</a>
+<div
+  class="bg-gray px-4 py-2 bg-light d-flex justify-content-between">
+  <p class="h5 mb-0 py-1">Chat Rooms</p>
+  <a href="{% url 'create-room' %}">Create Room</a>
+</div>
+<div class="px-0 h-100 d-flex">
+  <div class="bg-white h-100 col-5">
+    <div class="messages-box px-4">
+      <div class="list-group rounded-0 py-4">
+        <a
+          href="{% url 'home' %}"
+          class="list-group-item list-group-item-action list-group-item-light rounded-0">
+          <div class="medi">
+            <div class="media-body ml-4">
+              <div
+                class="d-flex align-items-center justify-content-between mb-1">
+                <h6 class="mb-0">All</h6>
+              </div>
+            </div>
+          </div>
+        </a>
+        {% for topic in topics %}
+        <a
+          href="{% url 'home' %}?q={{topic.name}}"
+          class="list-group-item list-group-item-action list-group-item-light rounded-0">
+          <div class="medi">
+            <div class="media-body ml-4">
+              <div
+                class="d-flex align-items-center justify-content-between mb-1">
+                <h6 class="mb-0">{{topic.name}}</h6>
+              </div>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
     </div>
-
-    <div class="messages-box">
-      <div class="list-group rounded-0">
+  </div>
+  <div class="col-7 px-0 h-100 bg-white">
+    <div class="messages-box px-4">
+      <div class="list-group rounded-0 py-4">
         {% for room in rooms %}
         <a
           href="{% url 'room' room.id %}"
@@ -41,8 +72,5 @@
       </div>
     </div>
   </div>
-</div>
-<div class="col-7 px-0 h-100">
-  {% block chatContent %} {% endblock %}
 </div>
 {% endblock %}
