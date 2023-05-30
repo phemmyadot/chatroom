@@ -20,7 +20,11 @@
     <link rel="stylesheet" href="{% static 'style.css' %}" />
   </head>
   <body>
-    <div class="container py-5 px-4"></div>
-    {% include 'navbar.html' %} {% block content %} {% endblock %}
+    <div class="container h-screen py-5 px-4">
+      {% include 'navbar.html' %}
+      <div class="row rounded-lg overflow-hidden shadow h-90">
+        {% block content %} {% endblock %}
+      </div>
+    </div>
   </body>
 </html>
